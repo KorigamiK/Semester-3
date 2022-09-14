@@ -17,17 +17,21 @@
 
 \usepackage[official]{eurosym}
 \usepackage{enumitem}
-\setlist{nolistsep,noitemsep}
+\setlist{nolistsep, noitemsep}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cite}
 \usepackage{lipsum}
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{minted}
 
 \begin{document}
 
 \input{content/title.tex}
 
-\input{content/abstract.tex}
+% \input{content/abstract.tex}
 
 \newpage
 
@@ -38,21 +42,13 @@
 \newpage
 \setcounter{page}{1}
 
-\section{Introduction}\label{sec:intro}
+\renewcommand\fcolorbox[4][]{\textcolor{cyan}{\strut#4}}
 
-\lipsum[1-2]
-
-\section{Literature review}\label{sec:lit-rev}
-
-\lipsum[3-4]\cite{einstein}
-
-\section{Methodology}\label{sec:meth}
-
-\lipsum[5-6]\cite{latexcompanion}
+% Experiments
+\input{content/practicals/fib.tex}
 
 \section{Results}\label{sec:res}
-
-\lipsum[7-8]\cite{knuthwebsite}
+\lipsum[1-2]\cite{knuthwebsite}
 
 \bibliographystyle{ieeetr}
 \bibliography{refs}
