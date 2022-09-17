@@ -21,3 +21,5 @@ LOOP L1
 
 INT 3H           ; Terminate the Program
 END START
+
+HLT
