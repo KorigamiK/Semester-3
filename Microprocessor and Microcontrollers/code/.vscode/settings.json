@@ -1,4 +1,5 @@
 {
     "masmtasm.ASM.mode": "single file",
-    "masmtasm.ASM.emulator": "dosbox"
+    "masmtasm.ASM.emulator": "dosbox",
+    "editor.tabSize": 4
 }

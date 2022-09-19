@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "xsro.masm-tasm"
+        "xsro.masm-tasm",
+        "DaniDanDev.assembly-8086-snippets"
     ]
 }

@@ -1,22 +1,8 @@
-;Wrte instruction to load 2 unsigned numbers in register B & register C, respectively. Subtract
-;(C) from (B). If the result in 2's complement, convert the result in absolute magnitude & display
-;it at PORT1; otherwise display the +ve result. Execute the program with following set of data
-;       Set 1 : (B) = 42H, (C) = 69H
-;       Set 2 : (B) = 69H, (C) = 42H
-;       Set 3 : (B) = F8H, (C) = 23H
-
-
-         MVI B, 69H   ;B = 69H
-         MVI C, 42H   ;C = 42H
-
-         MOV A, B     ;A = B
-         SUB C        ;A = A - C
-
-         JP Display   ;if Answer is +ve, jump to Display
-
-         CMA          ;Else, complement A (1's complement)
-         INR A        ;A = A + 1 (2's complement)
-
-Display: OUT 01H      ;Display answer at port 01H
-
-         HLT
+ORG 100h ; this directive required for a simple 1 segment .com program.
+MOV AX, 0B800h ; set AX to hexadecimal value of B800h.
+MOV DS, AX ; copy value of AX to DS.
+MOV CL, 'A' ; set CL to ASCII code of 'A', it is 41h.
+MOV CH, 1101_1111b ; set CH to binary value.
+MOV BX, 15Eh ; set BX to 15Eh.
+MOV [BX], CX ; copy contents of CX to memory at B800:015E
+RET ; returns to operating system

@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[pdftex]{graphicx}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\linespread{1.06}
+\setlength{\parskip}{10pt plus2pt minus2pt}
+
+\widowpenalty 10000
+\clubpenalty 10000
+
+\newcommand{\eat}[1]{}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage[official]{eurosym}
+\usepackage{enumitem}
+\setlist{nolistsep,noitemsep}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+\usepackage{lipsum}
+
+\usepackage{minted}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\input{content/title.tex}
+
+% \input{content/abstract.tex}
+
+\newpage
+
+
+
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\newpage
+\setcounter{page}{1}
+
+
+\input{content/introduction.tex}
+
+\newcommand { \inputsql } [1] {
+  \inputminted[linenos,autogobble,breaklines,breaklines,frame=single,framesep=10pt]{sql}{sql/#1.sql}
+}
+
+\newcommand { \key } [1] {\underline{\texttt{#1}}}
+
+\input{content/sea.tex}
+
+\pagebreak
+\bibliographystyle{ieeetr}
+\bibliography{refs}
+
+
+\end{document}

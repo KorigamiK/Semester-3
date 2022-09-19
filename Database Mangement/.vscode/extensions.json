@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "torn4dom4n.latex-support",
+        "jeffersonqin.latex-snippets-jeff",
+        "tecosaur.latex-utilities",
+        "james-yu.latex-workshop",
+        "unifiedjs.vscode-mdx",
+        "danidandev.assembly-8086-snippets",
+        "roncho.assembly-8086",
+        "valentjn.vscode-ltex"
+    ]
+}
