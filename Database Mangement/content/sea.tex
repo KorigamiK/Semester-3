@@ -5,7 +5,7 @@
 Consider the following relational schema:
 
 
-\begin{minted}[autogobble,breaklines,breaklines,frame=single,framesep=10pt,escapeinside=||]{sql}
+\begin{sqlSchema}{DSY_cod_example}
 
     SAILORS (|\key{sid}|, sname, rating, date_of_birth)
 
@@ -13,7 +13,7 @@ Consider the following relational schema:
 
     RESERVES (|\key{sid, bid, date, time\_slot}|)
 
-\end{minted}
+\end{sqlSchema}
 
 
 \subsection{Queries}
@@ -23,10 +23,35 @@ Consider the following relational schema:
           \begin{enumerate}
               \item Relational Algebra
                     \begin{equation*}
-                        \sigma_{\text{rating} = 10}(\sigma_{\text{date\_of\_birth} < 1960}(\sigma_{\text{sid} \in \text{sid}}(SAILORS \bowtie RESERVES)))
+                        \sigma_{\text{date\_of\_birth} < 1960}(\sigma_{\text{sid} \in \text{sid}}(SAILORS \bowtie RESERVES))
                     \end{equation*}
 
               \item  SQL \linebreak \inputsql{01}
+          \end{enumerate}
+          \vspace{1cm}
+
+    \item Find names of sailors who've reserved a red or a green boat in the month of March.
+          \begin{enumerate}
+              \item Relational Algebra
+                    \begin{equation*}
+                        \sigma_{\text{bname} = \text{red} \lor \text{bname} = \text{green}}(\sigma_{\text{date} = \text{March}}(BOATS \bowtie RESERVES)) \bowtie SAILORS
+                    \end{equation*}
+                    \pagebreak
+
+              \item  SQL
+                    \begin{sqlQuery}{DSY_cod_example2}
+                        SELECT sname
+                        FROM SAILORS
+                        WHERE sid IN
+                            (SELECT sid
+                            FROM RESERVES
+                            WHERE bid IN
+                                (SELECT bid
+                                FROM BOATS
+                                WHERE bname = 'red' OR bname = 'green')
+                            AND date = 'March')
+                    \end{sqlQuery}
+
           \end{enumerate}
 \end{enumerate}
 

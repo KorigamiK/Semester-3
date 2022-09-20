@@ -25,6 +25,7 @@
 \usepackage{minted}
 
 \usepackage{amsmath}
+\usepackage{fancyvrb} 
 
 \begin{document}
 
@@ -49,6 +50,26 @@
 }
 
 \newcommand { \key } [1] {\underline{\texttt{#1}}}
+
+\newenvironment{sqlSchema}[2][h!bp]
+{
+  \VerbatimEnvironment
+  \label{#2}%
+  \begin{listing}[#1]% which is h!bp
+    \centering
+    \begin{minted}[autogobble, breaklines, breaklines, frame=single, framesep=10pt, escapeinside=|| ]{sql}%
+}
+{ \end{minted}\end{listing} }
+
+\newenvironment{sqlQuery}[2][h!bp]
+{
+  \VerbatimEnvironment
+  \label{#2}%
+  \begin{listing}[#1]% which is h!bp
+    \centering
+    \begin{minted}[ linenos,autogobble,breaklines,breaklines,frame=single,framesep=10pt,escapeinside=|| ]{sql}%
+}
+{ \end{minted}\end{listing} }
 
 \input{content/sea.tex}
 
