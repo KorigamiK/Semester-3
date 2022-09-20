@@ -6,3 +6,6 @@ sql
 linenos
 autogobble
 breaklines
+bp
+sqlQuery
+sqlSchema
