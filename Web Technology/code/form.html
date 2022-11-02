@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp Form</title>
+    <style>
+      :root {
+        --message-display: none;
+      }
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+      main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      form {
+        text-align: center;
+      }
+      form .user-input {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      input {
+        height: 30px;
+        margin: 10px 0;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      button {
+        margin: 10px 0;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px 10px;
+        background-color: #f1f1f1;
+      }
+      button:hover {
+        background-color: #ddd;
+      }
+      input:invalid {
+        border: 2px solid red;
+      }
+      input:valid {
+        border: 2px solid green;
+      }
+      #message {
+        display: var(--message-display);
+      }
+      .valid {
+        color: green;
+      }
+      .invalid {
+        color: red;
+      }
+      footer {
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+      }
+      footer a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sign Up</h1>
+      <form action="/signup" method="POST">
+        <div class="user-input">
+          <label for="name">Name</label>
+          <input required type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input required type="email" name="email" id="email" />
+          <label for="password">Password</label>
+          <input
+            required
+            type="password"
+            name="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            id="password"
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+      </div>
+    </main>
+    <footer>
+      &copy; 2022 - 2023
+      <a target="_blank" href="https://github.com/KorigamiK">KorigamiK</a>
+    </footer>
+
+    <script type="text/JavaScript">
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+
+      const password = document.getElementById("password");
+      password.addEventListener("blur", () => document.documentElement.style.setProperty("--message-display", "none"));
+      password.addEventListener("focus", () => document.documentElement.style.setProperty("--message-display", "block"));
+
+      const message = document.getElementById("message");
+      const letter = document.getElementById("letter");
+      const capital = document.getElementById("capital");
+      const number = document.getElementById("number");
+      const length = document.getElementById("length");
+
+      password.onkeyup = () => {
+        const lowerCaseLetters = /[a-z]/g;
+        if (password.value.match(lowerCaseLetters)) {
+          letter.classList.toggle("invalid");
+          letter.classList.add("valid");
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+        }
+
+        const upperCaseLetters = /[A-Z]/g;
+        if (password.value.match(upperCaseLetters)) {
+          capital.classList.remove("invalid");
+          capital.classList.add("valid");
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+        }
+
+        const numbers = /[0-9]/g;
+        if (password.value.match(numbers)) {
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+        }
+
+        if (password.value.length >= 8) {
+          length.classList.remove("invalid");
+          length.classList.add("valid");
+        } else {
+          length.classList.remove("valid");
+          length.classList.add("invalid");
+        }
+      };
+    </script>
+  </body>
+</html>

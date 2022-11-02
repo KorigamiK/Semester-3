@@ -9,3 +9,6 @@ breaklines
 bp
 sqlQuery
 sqlSchema
+KorigamiK
+href
+&copy
