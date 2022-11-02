@@ -30,13 +30,13 @@ Consider the following relational schema:
           \end{enumerate}
           \vspace{1cm}
 
+          \pagebreak
     \item Find names of sailors who've reserved a red or a green boat in the month of March.
           \begin{enumerate}
               \item Relational Algebra
                     \begin{equation*}
                         \sigma_{\text{bname} = \text{red} \lor \text{bname} = \text{green}}(\sigma_{\text{date} = \text{March}}(BOATS \bowtie RESERVES)) \bowtie SAILORS
                     \end{equation*}
-                    \pagebreak
 
               \item  SQL
                     \begin{sqlQuery}{DSY_cod_example2}

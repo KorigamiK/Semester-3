@@ -15,7 +15,17 @@
             "env": {}
         }
     ],
-    "[assembly]": {
-        "editor.defaultFormatter": "xsro.masm-tasm"
-    }
+    "ltex.latex.environments": {
+        "lstlisting": "ignore",
+        "verbatim": "ignore",
+        "sqlQuery": "ignore",
+        "sqlSchema": "ignore",
+    },
+    "latex-workshop.latexindent.args": [
+        "-c",
+        "%DIR%/",
+        "%TMPFILE%",
+        "-y=defaultIndent: '%INDENT%'",
+        "-l=%DIR%/latexindent.yaml"
+    ],
 }
