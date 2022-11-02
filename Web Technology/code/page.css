@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&family=Zen+Old+Mincho:wght@900&display=swap');
+
+body {
+    background-image: linear-gradient(to right, #152a49, #132852, #18255a,
+            #232060, #311763);
+}
+
+.nav {
+    margin: 50px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: #A8999C;
+    letter-spacing: 5px;
+}
+
+.cnav {
+    margin: 0px 25px;
+    font-family: 'Zen Old Mincho', serif;
+}
+
+.b1 {
+    background-image: linear-gradient(to right, #552746, #53244a, #51224f,
+            #4c2155, #46205b);
+    height: 40px;
+    width: 150px;
+    color: #C3AFCC;
+    border: none;
+    font-family: 'Zen Old Mincho', serif;
+    position: absolute;
+    top: 50px;
+    right: 120px;
+    letter-spacing: 3px;
+    font-weight: 100;
+}
+
+.content {
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-size: 55px;
+    text-align: end;
+    letter-spacing: 2px;
+    padding-left: 800px;
+    margin-right: 150px;
+    margin-top: 100px;
+}
+
+.b2 {
+    background-image: linear-gradient(to right, #552746, #53244a, #51224f,
+            #4c2155, #46205b);
+    height: 40px;
+    width: 150px;
+    color: #C3AFCC;
+    border: none;
+    letter-spacing: 3px;
+    font-family: 'Zen Old Mincho', serif;
+}
+
+.cb {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 80px;
+}
+
+.cb1 {
+    background-image: linear-gradient(to right, #552746, #53244a, #51224f,
+            #4c2155, #46205b);
+    height: 180px;
+}
+
+.h {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    margin: 25px;
+    font-size: 22px;
+    color: whitesmoke;
+    letter-spacing: 3px;
+}
+
+.pc {
+    text-align: center;
+    padding: 0px 75px;
+    font-size: 20px;
+    color: #C3AFCC;
+    letter-spacing: 2px;
+}

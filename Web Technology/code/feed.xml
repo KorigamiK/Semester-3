@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://korigamik.deno.dev/blog</id>
+    <title>Blogs on paper</title>
+    <updated>2022-11-02T06:46:07.509Z</updated>
+    <link rel="alternate" href="https://korigamik.deno.dev/blog"/>
+    <link rel="self" href="https://korigamik.deno.dev/feed"/>
+    <subtitle>Articles thrown at you.</subtitle>
+    <icon>https://korigamik.deno.dev/favicon.ico</icon>
+    <rights>Copyright 2022 https://korigamik.deno.dev</rights>
+    <entry>
+        <title type="html"><![CDATA[Bags with Balls]]></title>
+        <id>https://korigamik.deno.dev/Bags with Balls</id>
+        <link href="https://korigamik.deno.dev/bags_with_balls"/>
+        <updated>2022-08-16T13:15:18.514Z</updated>
+        <summary type="html"><![CDATA[An approach to solving this codeforces problem]]></summary>
+        <published>2022-08-16T13:15:18.514Z</published>
+        <rights>Copyright 2022 https://korigamik.deno.dev</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello world!]]></title>
+        <id>https://korigamik.deno.dev/Hello world!</id>
+        <link href="https://korigamik.deno.dev/hello_world"/>
+        <updated>2022-08-15T19:15:18.514Z</updated>
+        <summary type="html"><![CDATA[This is my first blog post! ]]></summary>
+        <published>2022-08-15T19:15:18.514Z</published>
+        <rights>Copyright 2022 https://korigamik.deno.dev</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Raycasting Adventures]]></title>
+        <id>https://korigamik.deno.dev/Raycasting Adventures</id>
+        <link href="https://korigamik.deno.dev/raycasting_adventures"/>
+        <updated>2022-10-25T13:15:18.514Z</updated>
+        <summary type="html"><![CDATA[A deep dive into game...]]></summary>
+        <published>2022-10-25T13:15:18.514Z</published>
+        <rights>Copyright 2022 https://korigamik.deno.dev</rights>
+    </entry>
+</feed>

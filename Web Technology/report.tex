@@ -23,6 +23,41 @@
 \usepackage{lipsum}
 
 \usepackage{minted}
+\usepackage[skins,minted]{tcolorbox}
+
+\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
+
+\newtcblisting{myminted}[3][]{minted language=#3,
+    enhanced, listing engine=minted,
+    listing only, #1, title=#2, 
+    colback=mintedbackground, colbacktitle=mintedbackground, coltitle=darkgray, 
+    arc=0pt,outer arc=0pt, 
+    boxrule=0mm, 
+    toptitle=1mm, bottomtitle=1mm,
+    titlerule=1pt, colframe=gray, titlerule style={mintedbackground, dashed}    
+}
+
+\newtcbinputlisting[list inside=mypyg]{\codeFromFile}[6][]{%
+    listing engine=minted,
+    enhanced,
+    colback=mintedbackground,
+    colbacktitle=mintedbackground,
+    coltitle=darkgray,
+    arc=0pt,outer arc=0pt,
+    boxrule=0mm,
+    toptitle=1mm, 
+    bottomtitle=1mm,
+    titlerule=1pt, 
+    colframe=gray,
+    minted options={#1},
+    minted language=#2,
+    listing file={#3},
+    title={#4},
+    label=#5,
+    listing only,
+    titlerule style={mintedbackground, dashed},
+    #6
+}{}
 
 \begin{document}
 
@@ -35,8 +70,11 @@
 
 \input{content/introduction.tex}
 
+\input{content/html}
+\input{content/css.tex}
 \input{content/form.tex}
 \input{content/todo.tex}
+\input{content/xml.tex}
 
 \bibliographystyle{ieeetr}
 \bibliography{refs}
