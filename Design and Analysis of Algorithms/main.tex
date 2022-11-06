@@ -1,0 +1,42 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[letterpaper, margin=.9in]{geometry}
+
+% necessary packages and doc parameters
+\usepackage{graphicx, amssymb}
+\usepackage{url, hyperref}
+\usepackage{array}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{afterpage}
+\usepackage{fix-cm}
+\usepackage{sectsty}
+\usepackage[export]{adjustbox}
+\usepackage{setspace}
+
+\setlength\textwidth{6.5in}
+\setlength\textheight{8in}
+
+\definecolor{FSBlue}{HTML}{13284c}
+\definecolor{FSRed}{RGB}{177, 16, 44}
+
+\usepackage{newtxmath}
+\doublespacing
+
+\sectionfont{\color{FSBlue}}
+\subsectionfont{\color{FSRed}}
+
+\begin{document}
+
+\input{title}
+
+\tableofcontents
+\newpage
+
+\input{sections/intro}
+
+\input{sections/methods}
+
+\input{sections/results}
+
+\input{sections/conclusion}
+
+\end{document}
