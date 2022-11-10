@@ -1,0 +1,43 @@
+\section{Quick Sort}
+
+\subsection{Description}
+Quicksort picks an element as pivot, and then it partitions the given array around the
+picked pivot element. In quick sort, a large array is divided into two arrays in which one
+holds values that are smaller than the specified value (Pivot), and another array holds
+the values that are greater than the pivot.
+After that, left and right sub-arrays are also partitioned using the same approach. It will
+continue until the single element remains in the sub-array.
+
+\subsection{Algorithm}
+
+% 1.	quickSort(array, left, right)
+% 2.	if left < right
+% 3.	pivot = partition(array, left, right)
+% 4.	quickSort(array, left, pivot - 1)
+% 5.	quickSort(array, pivot + 1, right)
+%
+
+\begin{algorithm}[H]
+    \caption{Quick Sort}
+    \begin{algorithmic}[1]
+        \Procedure{QuickSort}{$array, left, right$}
+        \If{$left < right$}
+        \State $pivot$ = partition($array, left, right$)
+        \State QuickSort($array, left, pivot - 1$)
+        \State QuickSort($array, pivot + 1, right$)
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Code}
+
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall]{c++}{code/quick.cpp}
+
+\subsection{Output}
+
+\begin{lstlisting}[style=output]
+Enter the number of elements: 5
+Enter the elements: 170 45 75 90 802
+Sorted array is 45 75 90 170 802
+\end{lstlisting}

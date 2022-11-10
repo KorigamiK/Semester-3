@@ -1,0 +1,57 @@
+\section{Breadth First Search}
+
+\subsection{Description}
+Breadth-first search is a graph traversal algorithm that starts traversing the graph from the root node and explores all
+the neighbouring nodes. Then, it selects the nearest node and explores all the unexplored nodes.
+
+\subsection{Algorithm}
+
+% 1.	BFS(G, s)
+% 2.	for each vertex u ∈ V[G]
+% % 3.		d[u] ← ∞
+% % 4.		π[u] ← NIL
+% % 5.	d[s] ← 0
+% % 6.	Q ← ∅
+% % 7.	ENQUEUE(Q, s)
+% % 8.	while Q ≠ ∅
+% % 9.		u ← DEQUEUE(Q)
+% % 10.		for each vertex v ∈ Adj[u]
+% % 11.			if d[v] = ∞
+% % 12.				d[v] ← d[u] + 1
+% % 13.				π[v] ← u
+% % 14.				ENQUEUE(Q, v)
+
+\begin{algorithm}[H]
+    \caption{Breadth First Search}
+    \begin{algorithmic}[1]
+        \Procedure{BFS}{$G, s$}
+        \For{each vertex $u \in V[G]$}
+        \State $d[u] \gets \infty$
+        \State $\pi[u] \gets NIL$
+        \EndFor
+        \State $d[s] \gets 0$
+        \State $Q \gets \emptyset$
+        \State ENQUEUE($Q, s$)
+        \While{$Q \neq \emptyset$}
+        \State $u \gets DEQUEUE(Q)$
+        \For{each vertex $v \in Adj[u]$}
+        \If{$d[v] = \infty$}
+        \State $d[v] \gets d[u] + 1$
+        \State $\pi[v] \gets u$
+        \State ENQUEUE($Q, v$)
+        \EndIf
+        \EndFor
+        \EndWhile
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Code}
+
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall,breaklines]{c++}{code/bfs.cpp}
+
+\subsection{Output}
+
+\begin{lstlisting}[style=output]
+    1 4 8 12 7 11 3 2 6 10 9 5
+\end{lstlisting}

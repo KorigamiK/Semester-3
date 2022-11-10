@@ -11,16 +11,36 @@
 \usepackage{sectsty}
 \usepackage[export]{adjustbox}
 \usepackage{setspace}
-\usepackage[lined,algonl,boxed]{algorithm2e}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{minted}
 
-\setlength\textwidth{6.5in}
-\setlength\textheight{8in}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+% \setlength\textwidth{6.5in}
+% \setlength\textheight{8in}
+
+\usepackage{fancyhdr}
+
+\usepackage{listings}
+\colorlet{mycoolgray}{gray!40}
+\lstdefinestyle{output}{
+	numbers=none, % where to put the line-numbers
+	numberstyle=\tiny, % the size of the fonts that are used for the line-numbers     
+	backgroundcolor=\color{darkgray},
+	basicstyle=\ttfamily\color{white},
+	captionpos=b, % sets the caption-position to bottom
+	breaklines=true, % sets automatic line breaking
+	breakatwhitespace=false,
+}
+
 
 \definecolor{FSBlue}{HTML}{13284c}
 \definecolor{FSRed}{RGB}{177, 16, 44}
+\definecolor{FSBorder}{RGB}{0, 39, 56}
 
 \usepackage{newtxmath}
-\doublespacing
+% \doublespacing
 
 \sectionfont{\color{FSBlue}}
 \subsectionfont{\color{FSRed}}
@@ -32,14 +52,36 @@
 \tableofcontents
 \newpage
 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead{}
+\fancyhead[LO, L]{\footnotesize Desigh \& Analysis of Algorithms}
+\fancyhead[RO]{\footnotesize \nouppercase\leftmark}
+\fancyhead[R]{\footnotesize \nouppercase\leftmark}
+
+\fancyfoot{}
+\fancyfoot[L,LO]{\hfill\footnotesize\thepage}
+
 \input{sections/intro}
+
+\input{sections/count.tex}
 
 \input{sections/radix}
 
-\input{sections/methods}
+\input{sections/bucket}
 
-\input{sections/results}
+\input{sections/quick.tex}
 
-\input{sections/conclusion}
+\input{sections/merge.tex}
+
+\input{sections/heap.tex}
+
+\input{sections/dfs.tex}
+
+\input{sections/bfs.tex}
+
+\input{sections/prims.tex}
+
+\input{sections/kruskal.tex}
 
 \end{document}

@@ -1,0 +1,63 @@
+\section{Prim's Algorithm}
+
+\subsection{Description}
+Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. The algorithm operates by building this tree one vertex at a time, from an arbitrary starting vertex, at each step adding the cheapest possible connection from the tree to another vertex.
+
+\subsection{Algorithm}
+
+% 1.	Prim(G)
+% 2.	for each vertex u ∈ V[G]
+% % 3.		key[u] ← ∞
+% % % 4.		π[u] ← NIL
+% % % 5.	key[s] ← 0
+% % % 6.	Q ← V[G]
+% % % 7.	while Q ≠ ∅
+% % % 8.		u ← EXTRACT-MIN(Q)
+% % % 9.		for each vertex v ∈ Adj[u]
+% % % 10.			if v ∈ Q and w(u, v) < key[v]
+% % % 11.				π[v] ← u
+% % % 12.				key[v] ← w(u, v)
+
+\begin{algorithm}[H]
+    \caption{Prim's Algorithm}
+    \begin{algorithmic}[1]
+        \Procedure{Prim}{$G$}
+        \For{each vertex $u \in V[G]$}
+        \State $key[u] \gets \infty$
+        \State $\pi[u] \gets NIL$
+        \EndFor
+        \State $key[s] \gets 0$
+        \State $Q \gets V[G]$
+        \While{$Q \neq \emptyset$}
+        \State $u \gets EXTRACT-MIN(Q)$
+        \For{each vertex $v \in Adj[u]$}
+        \If{$v \in Q$ and $w(u, v) < key[v]$}
+        \State $\pi[v] \gets u$
+        \State $key[v] \gets w(u, v)$
+        \EndIf
+        \EndFor
+        \EndWhile
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Code}
+
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall,breaklines]{c++}{code/prims.cpp}
+
+\subsection{Output}
+
+\begin{lstlisting}[style=output]
+0 --> (1, 6) (2, 5) (4, 1)
+1 --> (2, 7) (0, 6)
+2 --> (1, 4) (0, 5) (3, 10)
+3 --> (2, 10)
+4 --> (5, 3) (0, 1)
+5 --> (4, 1)
+0 - 4
+4 - 5
+2 - 1
+1 - 2
+3 - 2
+Weight of the MST is 16
+\end{lstlisting}

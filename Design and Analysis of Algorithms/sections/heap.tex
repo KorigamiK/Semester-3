@@ -1,0 +1,38 @@
+\section{Heap Sort}
+
+\subsection{Description}
+Heap sort processes the elements by creating the min-heap or max-heap using the elements of the given array. Min-heap or max-heap represents the ordering of array in which the root element represents the minimum or maximum element of the array.
+
+\subsection{Algorithm}
+
+% 1.	heapSort(array, n)
+% 2.	buildMaxHeap(array, n)
+% 3.	for i -> n to 1
+% 4.	swap array[0] and array[i]
+% 5.	heapify(array, i, 0)
+%
+
+\begin{algorithm}[H]
+    \caption{Heap Sort}
+    \begin{algorithmic}[1]
+        \Procedure{HeapSort}{$array, n$}
+        \State buildMaxHeap($array, n$)
+        \For{$i \gets n$ to $1$}
+        \State swap $array[0]$ and $array[i]$
+        \State heapify($array, i, 0$)
+        \EndFor
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Code}
+
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall,breaklines]{c++}{code/heap.cpp}
+
+\subsection{Output}
+
+\begin{lstlisting}[style=output]
+Enter the number of elements: 5
+Enter the elements: 170 45 75 90 802
+Sorted array is 45 75 90 170 802
+\end{lstlisting}

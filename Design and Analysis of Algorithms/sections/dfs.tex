@@ -1,0 +1,44 @@
+\section{Depth First Search}
+
+\subsection{Description}
+The depth-first search (DFS) algorithm starts with the initial node of graph G and goes deeper until we find the goal
+node or the node with no children.
+
+\subsection{Algorithm}
+
+% 1.	DFS(G, v)
+% 2.	mark v as visited
+% 3.	for each unvisited neighbor w of v
+% 4.	DFS(G, w)
+
+\begin{algorithm}[H]
+    \caption{Depth First Search}
+    \begin{algorithmic}[1]
+        \Procedure{DFS}{$G, v$}
+        \State mark $v$ as visited
+        \For{each unvisited neighbor $w$ of $v$}
+        \State DFS($G, w$)
+        \EndFor
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\pagebreak
+
+\subsection{Code}
+
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall,breaklines]{c++}{code/dfs.cpp}
+
+\subsection{Output}
+
+% Enter the number of vertices: 4
+% Enter the number of edges: 4
+% Enter the edges:
+% 0 1
+% 0 2
+% 1 2
+% 2 3
+% DFS traversal is: 0 1 2 3
+\begin{lstlisting}[style=output]
+    1 4 8 12 7 11 3 2 6 10 9 5
+\end{lstlisting}
