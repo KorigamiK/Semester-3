@@ -1,52 +1,49 @@
-\section{Bucket Sort}
+\section{Counting Sort}
 
 \subsection{Description}
-Bucket sort is a sorting algorithm that separate the elements into multiple groups said to be buckets. Elements in bucket sort are first uniformly divided into groups called buckets, and then they are sorted by any other sorting algorithm. After that, elements are gathered in a sorted manner.
+This sorting technique doesn't perform sorting by comparing elements. It performs sorting by counting objects having distinct key values like hashing. After that, it performs some arithmetic operations to calculate each object's index position in the output sequence. Counting sort is not used as a general-purpose sorting algorithm.
 
-\pagebreak
 
+% \pagebreak
 \subsection{Algorithm}
 
-% Bucket Sort(A[])  
-% 1.  Let B[0....n-1] be a new array  
-% 2.  n=length[A]  
-% 3.  for i=0 to n-1  
-% 4.  make B[i] an empty list  
-% 5.  for i=1 to n  
-% 6.  do insert A[i] into list B[n a[i]]  
-% 7.  for i=0 to n-1  
-% 8.  do sort list B[i] with insertion-sort  
-% 9.  Concatenate lists B[0], B[1],........, B[n-1] together in order  
-% End   
+% 1.	countingSort(array, size)
+% 2.	max = findMax(array, size)
+% 3.	initialize countArray(max + 1) with 0
+% 4.	for i = 0 to size
+% 5.	countArray[array[i]]++
+% 6.	for i = 1 to max
+% 7.	countArray[i] = countArray[i] + countArray[i - 1]
+% 8.	for i = size to 1
+% 9.	output[countArray[array[i]] - 1] = array[i]
+% 10.	countArray[array[i]] = countArray[array[i]] - 1
 
-\begin{algorithm}
-    \caption{Bucket Sort}
+\begin{algorithm}[H]
+    \caption{Counting Sort}
     \begin{algorithmic}[1]
-        \Procedure{BucketSort}{$A$}
-        \State Let $B[0....n-1]$ be a new array
-        \State $n$ = length of $A$
-        \For{$i \gets 0$ to $n-1$}
-        \State make $B[i]$ an empty list
+        \Procedure{CountingSort}{$array, size$}
+        \State $max$ = findMax($array, size$)
+        \State initialize $countArray(max + 1)$ with 0
+        \For{$i = 0$ to $size$}
+        \State $countArray[array[i]]++$
         \EndFor
-        \For{$i \gets 1$ to $n$}
-        \State insert $A[i]$ into list $B[n a[i]]$
+        \For{$i = 1$ to $max$}
+        \State $countArray[i]$ = $countArray[i]$ + $countArray[i - 1]$
         \EndFor
-        \For{$i \gets 0$ to $n-1$}
-        \State sort list $B[i]$ with insertion-sort
+        \For{$i = size$ to $1$}
+        \State $output[countArray[array[i]] - 1]$ = $array[i]$
+        \State $countArray[array[i]]$ = $countArray[array[i]]$ - 1
         \EndFor
-        \State Concatenate lists $B[0], B[1],........, B[n-1]$ together in order
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
 
 \subsection{Code}
 
-\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall]{c++}{code/bucket.cpp}
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall]{c++}{code/count.cpp}
 
 \subsection{Output}
 
 \begin{lstlisting}[style=output]
-Enter the number of elements: 5
-Enter the elements: 0.897 0.565 0.656 0.1234 0.665
-Sorted array is 0.1234 0.565 0.656 0.665 0.897
+Sorted array: 1 2 3 4 5 6 7 8 9 10
 \end{lstlisting}

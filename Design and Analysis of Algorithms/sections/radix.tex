@@ -1,54 +1,36 @@
-\section{Kruskal's Algorithm}
+\section{Radix Sort}
 
 \subsection{Description}
-Kruskal's algorithm is a minimum spanning tree algorithm that finds an edge of the least possible weight that connects any two trees in the forest. It is a greedy algorithm in graph theory as it finds a minimum spanning tree for a connected weighted graph adding increasing cost arcs at each step.
+Radix sort is the linear sorting algorithm that is used for integers. In Radix sort, there is digit by digit sorting is performed that is started from the least significant digit to the most significant digit.
 
 \subsection{Algorithm}
 
-% 1.	Kruskal(G)
-% 2.	A ← ∅
-% 3.    for each vertex v ∈ V[G]
-% 4.        MAKE-SET(v)
-% 5.    sort the edges of E[G] into nondecreasing order by weight w
-% 6.    for each edge (u, v) ∈ E[G], taken in nondecreasing order by weight
-% 7.        if FIND-SET(u) ≠ FIND-SET(v)
-% 8.            A ← A ∪ {(u, v)}
-% 9.            UNION(u, v)
-% 10.   return A
+% 1.	radixSort(array, size)
+% 2.	max = findMax(array, size)
+% 3.	for exp = 1 to max
+% % 4.		countSort(array, size, exp)
 
 \begin{algorithm}[H]
-    \caption{Kruskal's Algorithm}
+    \caption{Radix Sort}
     \begin{algorithmic}[1]
-        \Procedure{Kruskal}{$G$}
-        \State $A \gets \emptyset$
-        \For{each vertex $v \in V[G]$}
-        \State $MAKE-SET(v)$
+        \Procedure{RadixSort}{$array, size$}
+        \State $max$ = findMax($array, size$)
+        \For{$exp = 1$ to $max$}
+        \State countSort($array, size, exp$)
         \EndFor
-        \State $\text{Sort the edges of} E[G] \text{into nondecreasing order by weight}\; w$
-        \For{each edge $(u, v) \in E[G], \text{taken in nondecreasing order by weight}$}
-        \If{$FIND-SET(u) \neq FIND-SET(v)$}
-        \State $A \gets A \cup \{(u, v)\}$
-        \State $UNION(u, v)$
-        \EndIf
-        \EndFor
-        \State $return A$
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
 
 \subsection{Code}
 
-\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall,breaklines]{c++}{code/kruskal.cpp}
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,autogobble,frame=single,framerule=0.01pt,rulecolor=FSBorder,stripall]{c++}{code/radix.cpp}
+
 
 \subsection{Output}
 
 \begin{lstlisting}[style=output]
-0 --> (1, 7) (3, 5)
-1 --> (0, 7) (2, 8) (3, 9) (4, 7)
-2 --> (1, 8) (4, 5)
-3 --> (0, 5) (1, 9) (4, 15) (5, 6)
-4 --> (1, 7) (2, 5) (3, 15) (5, 8) (6, 9)
-5 --> (3, 6) (4, 8) (6, 11)
-6 --> (4, 9) (5, 11)
-(0, 3, 5) (2, 4, 5) (3, 5, 6) (0, 1, 7) (1, 4, 7) (4, 6, 9)
+Enter the number of elements: 5
+Enter the elements: 170 45 75 90 802
+Sorted array: 45 75 90 170 802  
 \end{lstlisting}
