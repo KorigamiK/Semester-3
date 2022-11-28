@@ -1,0 +1,1 @@
+{"rule":"FILE_EXTENSIONS_CASE","sentence":"^\\Qcss ./code/page.css page.css page.css\\E$"}
