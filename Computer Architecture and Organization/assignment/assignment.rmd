@@ -19,8 +19,13 @@ author: "Kushagra Lakhwani (2021UCI8036)"
 
 1. __Differentiate between “hit” and “miss” with respect to cache memory.__
 
-    A cache hit is when the data is in the cache and a cache miss is when the data
-    is not in the cache.
+    Caching is one of the most vital mechanisms for improving site performance, frequent cache misses will increase data access time, resulting in a poor user experience and high bounce rates.
+
+    - __Hit__ : When a request is made to the cache, and the data is present in the cache, it is called a cache hit.
+
+    - __Miss__ : When a request is made to the cache, and the data is not present in the cache, it is called a cache miss.
+
+    For a more effective caching system, the hit ratio should be higher than the miss rate. One of the best ways to achieve that is to reduce cache misses.
 
 1. __How interrupts are handled? Explain.__
 
@@ -28,7 +33,9 @@ author: "Kushagra Lakhwani (2021UCI8036)"
 
 1. __Explain little endian and big endian data storage mechanisms.__
 
-    In little endian, the least significant byte is stored at the lowest address. In big endian, the most significant byte is stored at the lowest address.
+    In little endian, the least significant byte is stored at the lowest address.
+
+    In big endian, the most significant byte is stored at the lowest address.
 
 1. __Express $A*B+(B*D+C\; \wedge  E)$ into reverse polish notation.__
 
@@ -246,4 +253,6 @@ detail.__
 
             In polling, the controller generates the addresses for the devices. The number of address lines needed depends upon the number of connected devices to the system. The controller generates a sequence of device addresses in response to the bus request. When the requesting device recognizes its address, it activates the busy bus line and uses the bus. After several bus cycles, the polling process continues by choosing a different processor. The polling sequence usually is programmable, and as a result, the selection priority can be altered under program control.
 
-1. __Explain instruction cycle(fetch) and (decode) in detail. Also explain the working of computer registers used in it.__
+## __Question 4__
+
+1. __Explain instruction cycles (fetch) and (decode) in detail. Also explain the working of computer registers used in it.__
