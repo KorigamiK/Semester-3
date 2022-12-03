@@ -1,8 +1,0 @@
-{
-    "[markdown]": {
-        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-    },
-    "code-runner.executorMap": {
-        "markdown": "Rscript -e \"rmarkdown::render('$fileName')\""
-    },
-}
