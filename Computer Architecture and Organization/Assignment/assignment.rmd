@@ -11,7 +11,7 @@ author: "Kushagra Lakhwani (2021UCI8036)"
     \Large{ Assignment 1}
 \end{center}
 
-\tableofcontents
+<!-- \tableofcontents -->
 
 \vspace{1cm}
 
