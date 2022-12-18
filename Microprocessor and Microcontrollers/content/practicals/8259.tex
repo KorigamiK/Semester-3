@@ -24,3 +24,31 @@ microprocessor from 5 to 8 interrupt levels.
 \end{itemize}
 
 \subsection{Pin Description}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/practicals/8259pins.png}
+    \caption{Pin Diagram of 8259}
+    \label{fig:8259_pin}
+\end{figure}
+
+\subsection{Block Diagram}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{res/practicals/8259.png}
+    \caption{Block Diagram of 8259}
+    \label{fig:8259}
+\end{figure}
+
+The block diagram consists of 8 blocks which are:
+
+\begin{itemize}
+    \item  Data bus buffer
+    \item Read/Write Logic
+    \item Cascade Buffer Comparator
+    \item Control Logic
+    \item Priority Resolve
+    \item Interrupt Request Register (IRR)
+    \item Interrupt Service Register (ISR)
+\end{itemize}
