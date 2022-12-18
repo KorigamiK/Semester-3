@@ -21,10 +21,11 @@
 		"body": [
 			"\\section{${1:title}}\n",
 			"\\subsection{Objective}\n",
+			"${3:objective}\n",
 			"\\subsection{Implementation}\n",
 			"\\subsubsection{Assembly code}\n",
-			"\\inputminted[linenos, frame=single, breaklines]{asm}{./code/${2:file}.asm}\n",
-			"\\subsection{Results}\n",
+			"\\asmcode{./code/8086/${2:file}.asm}\n",
+			"\\subsection{Output}\n",
 			"\\pagebreak\n",
 		],
 		"description": "Create a new experiment"

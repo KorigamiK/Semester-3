@@ -17,5 +17,5 @@
     ],
     "[assembly]": {
         "editor.defaultFormatter": "xsro.masm-tasm"
-    }
+    },
 }

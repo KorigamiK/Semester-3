@@ -9,15 +9,20 @@ Write an assembly program to generate the numbers of the Fibonacci series.
 The Fibonacci sequence is defined as follows:
 
 \begin{align*}
-	F_0 = 0 \\
-	F_1 = 1 \\
-	F_n = F_{n-1} + F_{n-2}
+	 & F_0 = 0                 \\
+	 & F_1 = 1                 \\
+	 & F_n = F_{n-1} + F_{n-2}
 \end{align*}
 
 \subsubsection{Assembly code}
 
-\inputminted[linenos, frame=single, breaklines]{asm}{./code/8086/fibonacci.asm}
+\asmcode{./code/8086/fib.asm}
 
 \subsection{Output}
 
-\pagebreak
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./res/practicals/fib.png}
+	\caption{Output of the program}
+	\label{fig:fibonacci}
+\end{figure}
