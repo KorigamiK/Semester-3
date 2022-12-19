@@ -11,3 +11,13 @@ sqlQuery
 sqlSchema
 sid
 sname
+minage
+noofsailors
+CUSTBALANCE
+GOLDCUSTOMER
+customernum
+CUSTDOB
+custbalance
+custfname
+invdate
+prodnum
