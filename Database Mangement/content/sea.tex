@@ -23,36 +23,163 @@ Consider the following relational schema:
           \begin{enumerate}
               \item Relational Algebra
                     \begin{equation*}
-                        \sigma_{\text{date\_of\_birth} < 1960}(\sigma_{\text{sid} \in \text{sid}}(SAILORS \bowtie RESERVES))
+                        \pi_{sid, sname}(SAILORS \bowtie RESERVES))
                     \end{equation*}
 
               \item  SQL \linebreak \inputsql{01}
           \end{enumerate}
           \vspace{1cm}
 
-          \pagebreak
     \item Find names of sailors who've reserved a red or a green boat in the month of March.
           \begin{enumerate}
               \item Relational Algebra
-                    \begin{equation*}
-                        \sigma_{\text{bname} = \text{red} \lor \text{bname} = \text{green}}(\sigma_{\text{date} = \text{March}}(BOATS \bowtie RESERVES)) \bowtie SAILORS
-                    \end{equation*}
+                    \begin{multline*}
+                        \pi_{sname}(SAILORS \bowtie RESERVES \bowtie BOATS) \bowtie \\
+                        \sigma_{\text{bname} = \text{red} \lor \text{bname} = \text{green}}(\sigma_{\text{date} = \text{March}}(BOATS \bowtie RESERVES))
+                    \end{multline*}
 
               \item  SQL
                     \begin{sqlQuery}{DSY_cod_example2}
-                        SELECT sname
-                        FROM SAILORS
-                        WHERE sid IN
-                            (SELECT sid
-                            FROM RESERVES
-                            WHERE bid IN
-                                (SELECT bid
-                                FROM BOATS
-                                WHERE bname = 'red' OR bname = 'green')
-                            AND date = 'March')
+                            SELECT sname
+                            FROM SAILORS
+                            WHERE sid IN
+                                (SELECT sid
+                                FROM RESERVES
+                                WHERE bid IN
+                                    (SELECT bid
+                                    FROM BOATS
+                                    WHERE bname = 'red' OR bname = 'green')
+                                AND (SELECT extract(month FROM date) FROM RESERVES) = 3)
                     \end{sqlQuery}
 
           \end{enumerate}
+
+    \item  Find names of sailors who've reserved a red and a green boat
+
+          \begin{enumerate}
+              \item Relational Algebra
+                    \begin{multline*}
+                        \pi_{sname}(SAILORS \bowtie RESERVES \bowtie (\sigma_{\text{color} = red}(BOATS))) \; \cap  \\
+                        \pi_{sname}(SAILORS \bowtie RESERVES \bowtie (\sigma_{\text{color} = green}(BOATS)))
+                    \end{multline*}
+
+              \item SQL
+                    \begin{sqlQuery}{DSY_cod_example3}
+                    SELECT DISTINCT S1.sname
+                    FROM SAILORS S1, RESERVES R1, BOATS B1,
+                    RESERVES R2, BOATS B2
+                    WHERE S1.sid = R1.sid 
+                        AND R1.bid = B1.bid
+                        AND S1.sid = R2.sid 
+                        AND R2.bid = B2.bid
+                        AND B1.color = "red" 
+                        AND B2.color = "green";
+                \end{sqlQuery}
+          \end{enumerate}
+
+    \item Find \textsc{sid} of sailors who have \underline{not} reserved a boat after Jan 2018.
+
+          \begin{enumerate}
+              \item Relational Algebra
+
+                    \begin{equation*}
+                        \pi_{\text{sid}} - \pi_{\text{sid}}(SAILORS \bowtie \sigma_{\text{date\_of\_birth}\; >\; \text{Jan 2018}}(RESERVES))
+                    \end{equation*}
+
+              \item SQL
+                    \begin{sqlQuery}{}
+                    SELECT sid FROM SAILORS 
+                    WHERE sid NOT IN 
+                        (SELECT sid FROM RESERVES 
+                        WHERE date_of_birth > "2018-01-01")
+                    \end{sqlQuery}
+
+          \end{enumerate}
+
+    \item  Find sailors whose rating is greater than that of all the sailors named "John"
+          \begin{enumerate}
+              \item Relational Algebra
+
+                    \begin{multline*}
+                        \pi_{\text{sid}, \text{sname}}(SAILORS) \\
+                        - \pi_{S_2.\text{sid},S_2.\text{sname}}(\sigma_{S_2.\text{rating} < S.\text{rating}}(\rho_{S_2}(SAILORS)\times \rho_S(SAILORS)))
+                    \end{multline*}
+
+              \item SQL
+
+                    \begin{sqlQuery}{}
+                        SELECT sid, sname FROM SAILORS S1
+                        WHERE S1.rating > ALL
+                                (SELECT S2.rating FROM SAILORS S2
+                                WHERE S2.sname = "John")
+                    \end{sqlQuery}
+
+          \end{enumerate}
+
+    \item Find sailors who've reserved all boats
+
+          \begin{enumerate}
+              \item Relational Algebra
+                    \begin{equation*}
+                        \pi_{\text{sid}, \text{sname}}(\pi_{\text{sid}, \text{bid}}(RESERVES) \div \pi_{\text{bid}}(BOATS)) \\
+                        \bowtie SAILORS
+                    \end{equation*}
+                    \pagebreak
+              \item SQL
+                    \begin{sqlQuery}{}
+							SELECT S.sid, S.sname
+							FROM SAILORS S
+							WHERE NOT EXISTS
+								(SELECT B.bid
+								FROM BOATS B
+								WHERE NOT EXISTS
+									(SELECT R.sid, R.bid
+									FROM RESERVES R
+									WHERE R.sid = S.sid
+										AND R.bid = B.bid))
+						\end{sqlQuery}
+          \end{enumerate}
+
+    \item Find name and age of the oldest sailor(s)
+
+          \begin{enumerate}
+              \item Relational Algebra
+                    \begin{multline*}
+                        \pi_{\text{sname}, \text{age}}(\pi_{sid}(SAILORS) - \\
+                        \pi_{S_2.sid}(\sigma_{S_2.\text{age} < S.\text{age}}(\rho_{S_2}(SAILORS) \times \rho_{S}(SAILORS)))) \\
+                        \bowtie SAILORS
+                    \end{multline*}
+              \item SQL
+
+                    \begin{sqlQuery}{}
+                        SELECT sname, age FROM SAILORS S1
+                        WHERE S1.date_of_birth > ALL
+                                (SELECT S2.date_of_birth FROM SAILORS S2)
+                    \end{sqlQuery}
+
+          \end{enumerate}
+
+		\item  Find the age of the youngest sailor for each rating with at least 2 such sailors
+
+			\begin{enumerate}
+				\item Relational Algebra
+					\begin{multline*}
+						\pi_{\text{rating}, \text{minage}}(\sigma_{\text{no\_of\_sailors} > 1} \\
+						(\rho_{r (\text{rating}, \text{no\_of\_sailors}, \text{minage}) \; \mathcal{F} \; (\text{rating}, count(\text{sid}), min(\text{age}))} \\
+						(SAILORS))) 
+					\end{multline*}
+				\item SQL
+
+					\begin{sqlQuery}{}
+						SELECT rating, age FROM SAILORS S1
+						WHERE S1.date_of_birth > ALL AS minage
+								(SELECT S2.date_of_birth FROM SAILORS S2
+								WHERE S2.rating = S1.rating)
+						GROUP BY rating
+						HAVING COUNT(*) >= 2
+					\end{sqlQuery}
+			\end{enumerate}
+
 \end{enumerate}
 
 

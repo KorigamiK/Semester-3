@@ -6,8 +6,8 @@
 \usepackage[pdftex]{graphicx}
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 
-\linespread{1.06}
-\setlength{\parskip}{10pt plus2pt minus2pt}
+% \linespread{1.06}
+% \setlength{\parskip}{10pt plus2pt minus2pt}
 
 \widowpenalty 10000
 \clubpenalty 10000
@@ -26,6 +26,7 @@
 
 \usepackage{amsmath}
 \usepackage{fancyvrb} 
+\usepackage{amsfonts}
 
 \begin{document}
 
@@ -46,7 +47,7 @@
 \input{content/introduction.tex}
 
 \newcommand { \inputsql } [1] {
-  \inputminted[linenos,autogobble,breaklines,breaklines,frame=single,framesep=10pt]{sql}{sql/#1.sql}
+  \inputminted[linenos,autogobble,breaklines,breaklines,frame=single,framesep=5pt,fontsize=\footnotesize]{sql}{sql/#1.sql}
 }
 
 \newcommand { \key } [1] {\underline{\texttt{#1}}}
@@ -57,7 +58,7 @@
   \label{#2}%
   \begin{listing}[#1]% which is h!bp
     \centering
-    \begin{minted}[autogobble, breaklines, breaklines, frame=single, framesep=10pt, escapeinside=|| ]{sql}%
+    \begin{minted}[autogobble, breaklines, breaklines, frame=single, framesep=5pt, escapeinside=||, fontsize=\footnotesize ]{sql}%
 }
 { \end{minted}\end{listing} }
 
@@ -67,7 +68,7 @@
   \label{#2}%
   \begin{listing}[#1]% which is h!bp
     \centering
-    \begin{minted}[ linenos,autogobble,breaklines,breaklines,frame=single,framesep=10pt,escapeinside=|| ]{sql}%
+    \begin{minted}[ linenos,autogobble,breaklines,breaklines,frame=single,framesep=5pt,escapeinside=||,fontsize=\footnotesize ]{sql}%
 }
 { \end{minted}\end{listing} }
 

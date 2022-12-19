@@ -9,3 +9,5 @@ breaklines
 bp
 sqlQuery
 sqlSchema
+sid
+sname
