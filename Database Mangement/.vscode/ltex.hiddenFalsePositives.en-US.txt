@@ -1,0 +1,3 @@
+{"rule":"PIN_NUMBER","sentence":"^\\QBook It has authno, isbn number, title, edition, category, price.\\E$"}
+{"rule":"PIN_NUMBER","sentence":"^\\QIt has authno, isbn number, title, edition, category, price.\\E$"}
+{"rule":"HAVE_PART_AGREEMENT","sentence":"^\\QIt has name and staffid with staffid as Primary Key.\\E$"}

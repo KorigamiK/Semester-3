@@ -24,3 +24,13 @@ prodnum
 fk
 Vansh
 Kandwal
+UserId
+authno
+firstname
+lastname
+PublisherId
+PublisherID
+LoginID
+Regno
+Bookno
+staffid
