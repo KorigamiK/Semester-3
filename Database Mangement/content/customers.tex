@@ -14,6 +14,30 @@ Consider the following relational schema:
 
 \end{sqlSchema}
 
+\subsection{Table Definitions}
+
+\begin{enumerate}[label=\alph*)]
+    \item Create the tables for the schema
+
+          \inputsql{customers}
+
+          \begin{lstlisting}[style=output]
+practicals=# \dt
+    List of relations
+Schema |   Name   | Type  |  Owner
+--------+----------+-------+----------
+public | customers | table | postgres
+public | invoice   | table | postgres
+public | product   | table | postgres
+(3 rows)
+          \end{lstlisting}
+
+    \item Insert the following tuples into the tables
+
+          \inputsql{customers_data}
+
+\end{enumerate}
+
 \subsection{Queries}
 
 Write SQL queries and relational algebraic expression for the following:
@@ -28,14 +52,26 @@ Write SQL queries and relational algebraic expression for the following:
                     \begin{equation*}
                         \pi_{\text{cust\_lname} + " " + \text{cust\_fname}}(\sigma_{\text{cust\_balance} = 0} (CUSTOMERS))
                     \end{equation*}
+                    \pagebreak
 
               \item SQL
 
                     \begin{sqlQuery}{customers1}
-                        SELECT concat(cust_lname , " " , cust_fname) as name
+                        SELECT concat(cust_lname , ' ' , cust_fname) as name
                         FROM CUSTOMERS
-                        WHERE cust_balance = 0
+                        WHERE cust_balance = 0;
                     \end{sqlQuery}
+
+              \item Output
+
+                    \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/customers1.sql
+    name    
+------------
+ Smith John
+ Smith Mary
+(2 rows)
+                    \end{lstlisting}
 
           \end{enumerate}
 
@@ -51,7 +87,7 @@ Write SQL queries and relational algebraic expression for the following:
                     UPDATE CUSTOMERS
                     SET cust_balance = cust_balance + NEW.inv_amount
                     WHERE cust_num = NEW.cust_num;
-                END
+                END;
         \end{sqlQuery}
 
 
@@ -66,12 +102,10 @@ Write SQL queries and relational algebraic expression for the following:
                         ({}_{\text{cust\_num, inv\_date} > \text{prod\_num}} \; \mathcal{F}_{\; sum(\text{unit\_sold})} (INVOICE))))
                     \end{multline*}
 
-                    \pagebreak
-
               \item SQL
 
                     \begin{sqlQuery}{customers3}
-                        SELECT concat(cust_lname , " " , cust_fname) as name
+                        SELECT concat(cust_lname , ' ' , cust_fname) as name
                         FROM CUSTOMERS
                         WHERE cust_num IN
                         (
@@ -79,8 +113,20 @@ Write SQL queries and relational algebraic expression for the following:
                             FROM INVOICE
                             GROUP BY cust_num, inv_date, prod_num
                             HAVING sum(unit_sold) >= 3
-                        )
+                        );
                     \end{sqlQuery}
+                    \pagebreak
+
+              \item Output
+
+                    \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/customers3.sql
+    name    
+------------
+ Smith John
+ Jones Mary
+(2 rows)
+                    \end{lstlisting}
 
           \end{enumerate}
 
@@ -127,6 +173,7 @@ Write SQL queries and relational algebraic expression for the following:
                     \end{sqlQuery}
 
           \end{enumerate}
+          \pagebreak
 
     \item Count number of products sold on each date.
 
@@ -137,7 +184,6 @@ Write SQL queries and relational algebraic expression for the following:
                         \pi_{\text{inv\_date}, sum(\text{unit\_sold})}({}_{\; \text{inv\_date}} \; \mathcal{F}_{\; sum(\text{unit\_sold})} (INVOICE))
                     \end{equation*}
 
-                    \pagebreak
               \item SQL
 
                     \begin{sqlQuery}{customers5}
@@ -145,6 +191,27 @@ Write SQL queries and relational algebraic expression for the following:
                         FROM INVOICE
                         GROUP BY inv_date
                     \end{sqlQuery}
+
+              \item Output
+
+                    \begin{lstlisting}[style=output]
+practicals=# SELECT inv_date, sum(unit_sold)
+    FROM INVOICE
+    GROUP BY inv_date;
+  inv_date  | sum 
+------------+-----
+ 2015-10-01 |  10
+ 2015-07-01 |   7
+ 2015-03-01 |   3
+ 2015-02-01 |   2
+ 2015-01-01 |   8
+ 2015-06-01 |  14
+ 2015-05-01 |   5
+ 2015-11-01 |   1
+ 2015-04-01 |  13
+(9 rows)
+                \end{lstlisting}
+
 
           \end{enumerate}
 
@@ -162,6 +229,7 @@ Write SQL queries and relational algebraic expression for the following:
                             FOREIGN KEY (cust_num) REFERENCES CUSTOMERS (cust_num)
                         )
                     \end{sqlQuery}
+                    \pagebreak
 
               \item Create a trigger to update the GOLD\_CUSTOMER table when a new invoice record is entered for the customer.
 

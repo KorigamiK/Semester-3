@@ -32,6 +32,8 @@ public | sailors  | table | postgres
 (3 rows)
       \end{lstlisting}
 
+            \pagebreak
+
       \item Add Foreign Key constraints
             \inputsql{sailors_fk}
 
@@ -53,6 +55,9 @@ public | sailors  | table | postgres
                   \item  SQL \linebreak \inputsql{01}
             \end{enumerate}
 
+            \pagebreak
+
+      \item Output
             \begin{lstlisting}[style=output]
 practicals=# \i /home/sql/01.sql 
   sname  
@@ -107,6 +112,7 @@ Zorba
                               \pi_{sname}(SAILORS \bowtie RESERVES \bowtie (\sigma_{\text{color} = red}(BOATS))) \; \cap  \\
                               \pi_{sname}(SAILORS \bowtie RESERVES \bowtie (\sigma_{\text{color} = green}(BOATS)))
                         \end{multline*}
+                        \pagebreak
 
                   \item SQL
                         \begin{sqlQuery}{sea3}
@@ -170,6 +176,7 @@ sid
                               \pi_{\text{sid}, \text{sname}}(SAILORS) \\
                               - \pi_{S_2.\text{sid},S_2.\text{sname}}(\sigma_{S_2.\text{rating} < S.\text{rating}}(\rho_{S_2}(SAILORS)\times \rho_S(SAILORS)))
                         \end{multline*}
+                        \pagebreak
 
                   \item SQL
 
@@ -202,7 +209,7 @@ sid |  sname
                               \pi_{\text{sid}, \text{sname}}(\pi_{\text{sid}, \text{bid}}(RESERVES) \div \pi_{\text{bid}}(BOATS)) \\
                               \bowtie SAILORS
                         \end{equation*}
-                        \pagebreak
+
                   \item SQL
                         \begin{sqlQuery}{sea6}
                         SELECT S.sid, S.sname
@@ -237,6 +244,8 @@ sid | sname
                               \pi_{S_2.sid}(\sigma_{S_2.\text{age} < S.\text{age}}(\rho_{S_2}(SAILORS) \times \rho_{S}(SAILORS)))) \\
                               \bowtie SAILORS
                         \end{multline*}
+                        \pagebreak
+
                   \item SQL
 
                         \begin{sqlQuery}{sea7}
