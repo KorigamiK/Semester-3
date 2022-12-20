@@ -15,6 +15,30 @@ Consider the following relational schema:
 
 \end{sqlSchema}
 
+\subsection{Table Definitions}
+
+\begin{enumerate}[label=\alph*)]
+      \item Create the tables for the schema
+            \inputsql{sailors}
+
+            \begin{lstlisting}[style=output]
+practicals=# \dt
+      List of relations
+Schema |   Name   | Type  |  Owner   
+--------+----------+-------+----------
+public | boats    | table | postgres
+public | reserves | table | postgres
+public | sailors  | table | postgres
+(3 rows)
+      \end{lstlisting}
+
+      \item Add Foreign Key constraints
+            \inputsql{sailors_fk}
+
+      \item Insert the following tuples into the tables
+            \inputsql{sailors_data}
+
+\end{enumerate}
 
 \subsection{Queries}
 
@@ -28,6 +52,17 @@ Consider the following relational schema:
 
                   \item  SQL \linebreak \inputsql{01}
             \end{enumerate}
+
+            \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/01.sql 
+  sname  
+---------
+ John
+ Rusty
+ Horatio
+ Zorba
+(4 rows)
+            \end{lstlisting}
             \vspace{1cm}
 
       \item Find names of sailors who've reserved a red or a green boat in the month of March.
@@ -52,6 +87,16 @@ Consider the following relational schema:
                                 AND (SELECT extract(month FROM date) FROM RESERVES) = 3)
                     \end{sqlQuery}
 
+                  \item Output
+                        \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/sea2.sql
+sname
+-------
+Rusty
+Zorba
+(2 rows)
+                    \end{lstlisting}
+
             \end{enumerate}
 
       \item  Find names of sailors who've reserved a red and a green boat
@@ -72,9 +117,19 @@ Consider the following relational schema:
                         AND R1.bid = B1.bid
                         AND S1.sid = R2.sid 
                         AND R2.bid = B2.bid
-                        AND B1.color = "red" 
-                        AND B2.color = "green";
+                        AND B1.color = 'red' 
+                        AND B2.color = 'green';
                 \end{sqlQuery}
+
+                  \item Output
+
+                        \begin{lstlisting}[style=output]
+sname 
+-------
+John
+Rusty
+(2 rows)
+                  \end{lstlisting}
             \end{enumerate}
 
       \item Find \textsc{sid} of sailors who have \underline{not} reserved a boat after Jan 2018.
@@ -91,8 +146,19 @@ Consider the following relational schema:
                     SELECT sid FROM SAILORS 
                     WHERE sid NOT IN 
                         (SELECT sid FROM RESERVES 
-                        WHERE date_of_birth > "2018-01-01")
+                        WHERE date_of_birth > '2018-01-01')
                     \end{sqlQuery}
+
+                  \item Output
+                        \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/sea4.sql
+sid
+-----
+3
+4
+5
+(3 rows)
+                        \end{lstlisting}
 
             \end{enumerate}
 
@@ -111,8 +177,20 @@ Consider the following relational schema:
                         SELECT sid, sname FROM SAILORS S1
                         WHERE S1.rating > ALL
                                 (SELECT S2.rating FROM SAILORS S2
-                                WHERE S2.sname = "John")
+                                WHERE S2.sname = 'John')
                     \end{sqlQuery}
+
+                  \item Output
+                        \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/sea5.sql
+sid |  sname  
+-----+---------
+   2 | Rusty
+   3 | Horatio
+   4 | Zorba
+   5 | Julius
+(4 rows)
+                        \end{lstlisting}
 
             \end{enumerate}
 
@@ -138,6 +216,16 @@ Consider the following relational schema:
                                     WHERE R.sid = S.sid
                                           AND R.bid = B.bid))
                   \end{sqlQuery}
+
+                  \item Output
+                        \begin{lstlisting}[style=output]
+practicals=# \i /home/sql/sea6.sql
+sid | sname 
+-----+-------
+   1 | John
+(1 row)
+                        \end{lstlisting}
+
             \end{enumerate}
 
       \item Find name and age of the oldest sailor(s)
@@ -152,7 +240,7 @@ Consider the following relational schema:
                   \item SQL
 
                         \begin{sqlQuery}{sea7}
-                        SELECT sname, age FROM SAILORS S1
+                        SELECT sname FROM SAILORS S1
                         WHERE S1.date_of_birth > ALL
                                 (SELECT S2.date_of_birth FROM SAILORS S2)
                         \end{sqlQuery}

@@ -21,3 +21,4 @@ custbalance
 custfname
 invdate
 prodnum
+fk
