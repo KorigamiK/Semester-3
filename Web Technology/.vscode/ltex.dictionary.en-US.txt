@@ -14,3 +14,4 @@ href
 &copy
 php-fruits
 api
+htmlcode
