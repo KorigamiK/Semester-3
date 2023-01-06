@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE note [
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+]>
+<note>
+	<to>Batman</to>
+	<from>Flash</from>
+	<heading>Reminder</heading>
+	<body>Don't forget me this weekend</body>
+</note> 
+<note>
+	<to>Superman</to>
+	<from>Batman</from>
+	<heading>Message</heading>
+	<body>I'll be busy today</body>
+</note>
