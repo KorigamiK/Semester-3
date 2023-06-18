@@ -1,3 +1,4 @@
 [submodule "Web Technology/code/php-fruits"]
 	path = Web Technology/code/php-fruits
 	url = git@github.com:KorigamiK/php-fruits.git
+	branch = main
