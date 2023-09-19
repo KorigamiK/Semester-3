@@ -1,5 +1,4 @@
-; An 8086 assembly program to showcase the arithmetic instruction set
-
+; 8086 assembly program to show the arithmetic instruction set
 Data SEGMENT
       A          DB 14H
       B          DB 50H
@@ -35,7 +34,6 @@ Code SEGMENT
       ; Halt
             MOV    AH, 4CH
             INT    3H
-
 Code ENDS
 
 END
