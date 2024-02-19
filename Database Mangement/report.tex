@@ -9,13 +9,13 @@
 \usepackage{listings}
 
 \lstdefinestyle{output}{
-  numbers=none, % where to put the line-numbers
-  numberstyle=\tiny, % the size of the fonts that are used for the line-numbers     
-  backgroundcolor=\color{darkgray},
-  basicstyle=\ttfamily\color{white},
-  captionpos=b, % sets the caption-position to bottom
-  breaklines=true, % sets automatic line breaking
-  breakatwhitespace=false,
+	numbers=none, % where to put the line-numbers
+	numberstyle=\tiny, % the size of the fonts that are used for the line-numbers     
+	backgroundcolor=\color{darkgray},
+	basicstyle=\ttfamily\color{white},
+	captionpos=b, % sets the caption-position to bottom
+	breaklines=true, % sets automatic line breaking
+	breakatwhitespace=false,
 }
 
 
@@ -38,7 +38,7 @@
 \usepackage{minted}
 
 \usepackage{amsmath}
-\usepackage{fancyvrb} 
+\usepackage{fancyvrb}
 \usepackage{amsfonts}
 
 \begin{document}
@@ -56,30 +56,29 @@
 
 
 \newcommand { \inputsql } [1] {
-  \inputminted[linenos,autogobble,breaklines,breaklines,frame=single,framesep=5pt,fontsize=\footnotesize]{sql}{sql/#1.sql}
+	\inputminted[autogobble,breaklines,breaklines,frame=single,framesep=5pt,fontsize=\footnotesize]{sql}{sql/#1.sql}
 }
 
 \newcommand { \key } [1] {\underline{\texttt{#1}}}
 
 \newenvironment{sqlSchema}[2][h!bp]
 {
-  \VerbatimEnvironment
-  \label{#2}%
-  \begin{listing}[#1]% which is h!bp
-    \centering
-    \begin{minted}[autogobble, breaklines, breaklines, frame=single, framesep=5pt, escapeinside=||, fontsize=\footnotesize ]{sql}%
+	\VerbatimEnvironment
+	\label{#2}%
+	\begin{listing}[#1]% which is h!bp
+		\centering
+		\begin{minted}[autogobble, breaklines, breaklines, frame=single, framesep=5pt, escapeinside=||, fontsize=\footnotesize ]{sql}%
 }
 { \end{minted}\end{listing} }
 
 \newenvironment{sqlQuery}[2][h!bp]
 {
-  \VerbatimEnvironment
-  \label{#2}%
-  \begin{listing}[#1]% which is h!bp
-    \centering
-    \begin{minted}[ linenos,autogobble,breaklines,breaklines,frame=single,framesep=5pt,escapeinside=||,fontsize=\footnotesize ]{sql}%
+	\VerbatimEnvironment
+	\label{#2}%
+	\centering
+	\begin{minted}[ autogobble,breaklines,breaklines,frame=single,framesep=5pt,escapeinside=||,fontsize=\footnotesize ]{sql}%
 }
-{ \end{minted}\end{listing} }
+{ \end{minted} }
 
 \input{content/sailors.tex}
 \input{content/customers.tex}

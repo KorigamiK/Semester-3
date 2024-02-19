@@ -6,22 +6,22 @@ Consider the following relational schema:
 
 \begin{sqlSchema}{customers}
 
-    CUSTOMERS (|\key{cust\_num}|, |\text{cust\_lname}|, |\text{cust\_fname}|, |\text{cust\_balance}|)
+	CUSTOMERS (|\key{cust\_num}|, |\text{cust\_lname}|, |\text{cust\_fname}|, |\text{cust\_balance}|)
 
-    PRODUCT (|\key{prod\_num}|, |\text{prod\_name}|, price)
+	PRODUCT (|\key{prod\_num}|, |\text{prod\_name}|, price)
 
-    INVOICE (|\key{inv\_num, prod\_num, cust\_num, inv\_date}|, |\text{unit\_sold}|, |\text{inv\_amount}|)
+	INVOICE (|\key{inv\_num, prod\_num, cust\_num, inv\_date}|, |\text{unit\_sold}|, |\text{inv\_amount}|)
 
 \end{sqlSchema}
 
 \subsection{Table Definitions}
 
 \begin{enumerate}[label=\alph*)]
-    \item Create the tables for the schema
+	\item Create the tables for the schema
 
-          \inputsql{customers}
+	      \inputsql{customers}
 
-          \begin{lstlisting}[style=output]
+	      \begin{lstlisting}[style=output]
 practicals=# \dt
     List of relations
 Schema |   Name   | Type  |  Owner
@@ -32,9 +32,9 @@ public | product   | table | postgres
 (3 rows)
           \end{lstlisting}
 
-    \item Insert the following tuples into the tables
+	\item Insert the following tuples into the tables
 
-          \inputsql{customers_data}
+	      \inputsql{customers_data}
 
 \end{enumerate}
 
@@ -43,28 +43,28 @@ public | product   | table | postgres
 Write SQL queries and relational algebraic expression for the following:
 
 \begin{enumerate}
-    \item Find the names of the customer who have purchased no item. Set default value of cust\_balance as 0 for
-          such customers.
+	\item Find the names of the customer who have purchased no item. Set default value of cust\_balance as 0 for
+	      such customers.
 
-          \begin{enumerate}
-              \item Relational Algebra
+	      \begin{enumerate}
+		      \item Relational Algebra
 
-                    \begin{equation*}
-                        \pi_{\text{cust\_lname} + " " + \text{cust\_fname}}(\sigma_{\text{cust\_balance} = 0} (CUSTOMERS))
-                    \end{equation*}
-                    \pagebreak
+		            \begin{equation*}
+			            \pi_{\text{cust\_lname} + " " + \text{cust\_fname}}(\sigma_{\text{cust\_balance} = 0} (CUSTOMERS))
+		            \end{equation*}
+		            \pagebreak
 
-              \item SQL
+		      \item SQL
 
-                    \begin{sqlQuery}{customers1}
+		            \begin{sqlQuery}{customers1}
                         SELECT concat(cust_lname , ' ' , cust_fname) as name
                         FROM CUSTOMERS
                         WHERE cust_balance = 0;
                     \end{sqlQuery}
 
-              \item Output
+		      \item Output
 
-                    \begin{lstlisting}[style=output]
+		            \begin{lstlisting}[style=output]
 practicals=# \i /home/sql/customers1.sql
     name    
 ------------
@@ -73,13 +73,13 @@ practicals=# \i /home/sql/customers1.sql
 (2 rows)
                     \end{lstlisting}
 
-          \end{enumerate}
+	      \end{enumerate}
 
-    \item Write the trigger to update the \textsc{CUST\_BALANCE} in the CUSTOMER table when a new invoice record
-          is entered for the customer.
+	\item Write the trigger to update the \textsc{CUST\_BALANCE} in the CUSTOMER table when a new invoice record
+	      is entered for the customer.
 
 
-          \begin{sqlQuery}{customers2}
+	      \begin{sqlQuery}{customers2}
                 CREATE TRIGGER update_cust_balance
                 AFTER INSERT ON INVOICE
                 FOR EACH ROW
@@ -91,20 +91,20 @@ practicals=# \i /home/sql/customers1.sql
         \end{sqlQuery}
 
 
-    \item Find the customers who have purchased more than three units of a product on a day.
+	\item Find the customers who have purchased more than three units of a product on a day.
 
-          \begin{enumerate}
-              \item Relational Algebra
+	      \begin{enumerate}
+		      \item Relational Algebra
 
-                    \begin{multline*}
-                        \pi_{\text{cust\_lname} + " " + \text{cust\_fname}} (\sigma_{\text{unit\_sold} \geq  3} \\
-                        (CUSTOMER \bowtie \sigma_{\text{unit\_sold}}\\
-                        ({}_{\text{cust\_num, inv\_date} > \text{prod\_num}} \; \mathcal{F}_{\; sum(\text{unit\_sold})} (INVOICE))))
-                    \end{multline*}
+		            \begin{multline*}
+			            \pi_{\text{cust\_lname} + " " + \text{cust\_fname}} (\sigma_{\text{unit\_sold} \geq  3} \\
+			            (CUSTOMER \bowtie \sigma_{\text{unit\_sold}}\\
+			            ({}_{\text{cust\_num, inv\_date} > \text{prod\_num}} \; \mathcal{F}_{\; sum(\text{unit\_sold})} (INVOICE))))
+		            \end{multline*}
 
-              \item SQL
+		      \item SQL
 
-                    \begin{sqlQuery}{customers3}
+		            \begin{sqlQuery}{customers3}
                         SELECT concat(cust_lname , ' ' , cust_fname) as name
                         FROM CUSTOMERS
                         WHERE cust_num IN
@@ -115,11 +115,11 @@ practicals=# \i /home/sql/customers1.sql
                             HAVING sum(unit_sold) >= 3
                         );
                     \end{sqlQuery}
-                    \pagebreak
+		            \pagebreak
 
-              \item Output
+		      \item Output
 
-                    \begin{lstlisting}[style=output]
+		            \begin{lstlisting}[style=output]
 practicals=# \i /home/sql/customers3.sql
     name    
 ------------
@@ -128,41 +128,41 @@ practicals=# \i /home/sql/customers3.sql
 (2 rows)
                     \end{lstlisting}
 
-          \end{enumerate}
+	      \end{enumerate}
 
-    \item Write a query to illustrate Left Outer, Right Outer and Full Outer Join.
+	\item Write a query to illustrate Left Outer, Right Outer and Full Outer Join.
 
-          \begin{enumerate}
-              \item Left Outer Join
-                    \begin{equation*}
-                        CUSTOMER ]\bowtie INVOICE
-                    \end{equation*}
+	      \begin{enumerate}
+		      \item Left Outer Join
+		            \begin{equation*}
+			            CUSTOMER ]\bowtie INVOICE
+		            \end{equation*}
 
-                    \begin{sqlQuery}{customer4a}
+		            \begin{sqlQuery}{customer4a}
 											SELECT CONCAT(C.cust_fname, c.cust_lname) as name,
 											LEFT JOIN INVOICE i
 											ON C.cust_num=i.cust_num
 										\end{sqlQuery}
 
-              \item Right Outer Join
+		      \item Right Outer Join
 
-                    \begin{equation*}
-                        CUSTOMER \bowtie[ INVOICE
-                    \end{equation*}
+		            \begin{equation*}
+			            CUSTOMER \bowtie[ INVOICE
+		            \end{equation*}
 
-                    \begin{sqlQuery}{customer4b}
+		            \begin{sqlQuery}{customer4b}
 											SELECT CONCAT(C.cust_fname, c.cust_lname) as name,
 											RIGHT JOIN INVOICE i 
 											ON C.cust_num=i.cust_num
 										\end{sqlQuery}
 
-              \item Full Outer Join
+		      \item Full Outer Join
 
-                    \begin{equation*}
-                        CUSTOMER ]\bowtie[ INVOICE
-                    \end{equation*}
+		            \begin{equation*}
+			            CUSTOMER ]\bowtie[ INVOICE
+		            \end{equation*}
 
-                    \begin{sqlQuery}{customer4c}
+		            \begin{sqlQuery}{customer4c}
                     SELECT CONCAT(C.cust_fname, " ", C.cust_lname) as name
                     LEFT JOIN INVOICE i
                     ON C.cust_num=i.cust_num
@@ -172,29 +172,29 @@ practicals=# \i /home/sql/customers3.sql
                     ON C.cust_num=i.cust_num
                     \end{sqlQuery}
 
-          \end{enumerate}
-          \pagebreak
+	      \end{enumerate}
+	      \pagebreak
 
-    \item Count number of products sold on each date.
+	\item Count number of products sold on each date.
 
-          \begin{enumerate}
-              \item Relational Algebra
+	      \begin{enumerate}
+		      \item Relational Algebra
 
-                    \begin{equation*}
-                        \pi_{\text{inv\_date}, sum(\text{unit\_sold})}({}_{\; \text{inv\_date}} \; \mathcal{F}_{\; sum(\text{unit\_sold})} (INVOICE))
-                    \end{equation*}
+		            \begin{equation*}
+			            \pi_{\text{inv\_date}, sum(\text{unit\_sold})}({}_{\; \text{inv\_date}} \; \mathcal{F}_{\; sum(\text{unit\_sold})} (INVOICE))
+		            \end{equation*}
 
-              \item SQL
+		      \item SQL
 
-                    \begin{sqlQuery}{customers5}
+		            \begin{sqlQuery}{customers5}
                         SELECT inv_date, sum(unit_sold)
                         FROM INVOICE
                         GROUP BY inv_date
                     \end{sqlQuery}
 
-              \item Output
+		      \item Output
 
-                    \begin{lstlisting}[style=output]
+		            \begin{lstlisting}[style=output]
 practicals=# SELECT inv_date, sum(unit_sold)
     FROM INVOICE
     GROUP BY inv_date;
@@ -213,15 +213,15 @@ practicals=# SELECT inv_date, sum(unit_sold)
                 \end{lstlisting}
 
 
-          \end{enumerate}
+	      \end{enumerate}
 
-    \item As soon as customer balance becomes greater than Rs. 100,000, copy the customer\_num in new table
-          called "GOLD\_CUSTOMER"
+	\item As soon as customer balance becomes greater than Rs. 100,000, copy the customer\_num in new table
+	      called "GOLD\_CUSTOMER"
 
-          \begin{enumerate}
-              \item Create table GOLD\_CUSTOMER
+	      \begin{enumerate}
+		      \item Create table GOLD\_CUSTOMER
 
-                    \begin{sqlQuery}{customers6a}
+		            \begin{sqlQuery}{customers6a}
                         CREATE TABLE GOLD_CUSTOMER
                         (
                             cust_num int,
@@ -229,11 +229,11 @@ practicals=# SELECT inv_date, sum(unit_sold)
                             FOREIGN KEY (cust_num) REFERENCES CUSTOMERS (cust_num)
                         )
                     \end{sqlQuery}
-                    \pagebreak
+		            \pagebreak
 
-              \item Create a trigger to update the GOLD\_CUSTOMER table when a new invoice record is entered for the customer.
+		      \item Create a trigger to update the GOLD\_CUSTOMER table when a new invoice record is entered for the customer.
 
-                    \begin{sqlQuery}{customers6b}
+		            \begin{sqlQuery}{customers6b}
                         CREATE TRIGGER update_gold_customer
                         AFTER INSERT ON INVOICE
                         FOR EACH ROW
@@ -245,11 +245,11 @@ practicals=# SELECT inv_date, sum(unit_sold)
                         END                        
                     \end{sqlQuery}
 
-          \end{enumerate}
+	      \end{enumerate}
 
-    \item Add a new attribute CUST\_DOB in customer table
+	\item Add a new attribute CUST\_DOB in customer table
 
-          \begin{sqlQuery}{customers7}
+	      \begin{sqlQuery}{customers7}
             ALTER TABLE CUSTOMERS
             ADD COLUMN cust_dob date
           \end{sqlQuery}
