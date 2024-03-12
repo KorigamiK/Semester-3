@@ -1,6 +1,6 @@
 body {
-    background-image: linear-gradient(to right, #152a49, #132852, #18255a,
-            #232060, #311763);
+    background-image: linear-gradient(to right, #152a49, #132852, 
+      #18255a, #232060, #311763);
 }
 
 .nav {
@@ -19,8 +19,8 @@ body {
 }
 
 .b1 {
-    background-image: linear-gradient(to right, #552746, #53244a, #51224f,
-            #4c2155, #46205b);
+    background-image: linear-gradient(to right, #552746, #53244a, 
+      #51224f, #4c2155, #46205b);
     height: 40px;
     width: 150px;
     color: #C3AFCC;
@@ -45,8 +45,8 @@ body {
 }
 
 .b2 {
-    background-image: linear-gradient(to right, #552746, #53244a, #51224f,
-            #4c2155, #46205b);
+    background-image: linear-gradient(to right, #552746, #53244a, 
+      #51224f, #4c2155, #46205b);
     height: 40px;
     width: 150px;
     color: #C3AFCC;

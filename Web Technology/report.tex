@@ -37,36 +37,35 @@
 \newmintedfile[phpcode]{php}{linenos, breaklines, encoding=utf8, frame=single, framesep=5pt, framerule=0.4pt, bgcolor=mintedbackground,autogobble,numbersep=5pt}
 
 \newtcblisting{myminted}[3][]{minted language=#3,
-    enhanced, listing engine=minted,
-    listing only, #1, title=#2, 
-    colback=mintedbackground, colbacktitle=mintedbackground, coltitle=darkgray, 
-    arc=0pt,outer arc=0pt, 
-    boxrule=0mm, 
-    toptitle=1mm, bottomtitle=1mm,
-    titlerule=1pt, colframe=gray, titlerule style={mintedbackground, dashed}    
+	enhanced, listing engine=minted,
+	listing only, #1, title=#2,
+	colback=mintedbackground, colbacktitle=mintedbackground, coltitle=darkgray,
+	arc=0pt,outer arc=0pt,
+	boxrule=0mm,
+	toptitle=1mm, bottomtitle=1mm,
+	titlerule=1pt, colframe=gray, titlerule style={mintedbackground, dashed}
 }
 
-
 \newtcbinputlisting[list inside=mypyg]{\codeFromFile}[6][]{%
-    listing engine=minted,
-    enhanced,
-    colback=mintedbackground,
-    colbacktitle=mintedbackground,
-    coltitle=darkgray,
-    arc=0pt,outer arc=0pt,
-    boxrule=0mm,
-    toptitle=1mm, 
-    bottomtitle=1mm,
-    titlerule=1pt, 
-    colframe=gray,
-    minted options={#1},
-    minted language=#2,
-    listing file={#3},
-    title={#4},
-    label=#5,
-    listing only,
-    titlerule style={mintedbackground, dashed},
-    #6
+	listing engine=minted,
+	enhanced,
+	colback=mintedbackground,
+	colbacktitle=mintedbackground,
+	coltitle=darkgray,
+	arc=0pt,outer arc=0pt,
+	boxrule=0mm,
+	toptitle=1mm,
+	bottomtitle=1mm,
+	titlerule=1pt,
+	colframe=gray,
+	minted options={#1},
+	minted language=#2,
+	listing file={#3},
+	title={#4},
+	label=#5,
+	listing only,
+	titlerule style={mintedbackground, dashed},
+	#6
 }{}
 
 \begin{document}
@@ -78,13 +77,15 @@
 \newpage
 \setcounter{page}{1}
 
-% \input{content/introduction.tex}
-
 \input{content/html}
+\pagebreak
 \input{content/css.tex}
 \input{content/form.tex}
+\pagebreak
 \input{content/todo.tex}
+\pagebreak
 \input{content/xml.tex}
+\pagebreak
 \input{content/php.tex}
 
 \pagebreak
